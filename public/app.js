@@ -22,7 +22,7 @@ form.addEventListener('submit', event => {
   error.textContent = '';
   status.textContent = '';
   const data = Object.fromEntries(new FormData(form));
-  const required = ['nombre', 'telefono', 'zona', 'plaga', 'descripcion', 'lugar', 'mascotas'];
+  const required = ['nombre', 'zona', 'plaga'];
   for (const name of required) {
     if (!data[name]?.trim()) {
       error.textContent = 'Completá los campos obligatorios para preparar tu consulta.';
@@ -30,18 +30,12 @@ form.addEventListener('submit', event => {
       return;
     }
   }
-  if (data.telefono.replace(/\D/g, '').length < 6) {
-    error.textContent = 'Revisá tu número de teléfono: debe incluir al menos 6 dígitos.';
-    form.elements.telefono.focus();
-    return;
-  }
   const message = [
     'Hola, quiero consultar por un servicio de control de plagas en Córdoba Capital.', '',
-    `Nombre: ${data.nombre.trim()}`, `Teléfono: ${data.telefono.trim()}`,
-    `Zona: ${data.zona.trim()}`, `Tipo de lugar: ${data.lugar}`,
-    `Problema/plaga: ${data.plaga}`, `Mascotas: ${data.mascotas}`,
-    ...(data.tiempo.trim() ? [`Hace cuánto: ${data.tiempo.trim()}`] : []),
-    `Descripción: ${data.descripcion.trim()}`
+    `Nombre: ${data.nombre.trim()}`,
+    `Zona: ${data.zona.trim()}`,
+    `Problema/plaga: ${data.plaga}`,
+    ...(data.descripcion?.trim() ? [`Descripción: ${data.descripcion.trim()}`] : [])
   ].join('\n');
   const url = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(message)}`;
   const link = document.createElement('a');

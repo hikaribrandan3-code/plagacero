@@ -19,8 +19,19 @@ try {
   assert.equal(data[0].areaServed.name,'Córdoba Capital');
   assert.equal(data[0].hasOfferCatalog.itemListElement.length,b.services.length);
   for(const field of ['address','geo','aggregateRating','review','openingHours','openingHoursSpecification','priceRange'])assert(!Object.hasOwn(data[0],field),field);
-  assert.equal(data[1].mainEntity.length,b.faq.length);
-  for(const f of b.faq){assert(html.includes(`<summary>${f.q}`));assert(html.includes(`<p>${f.a}</p>`));}
+  assert.equal(data.length,1);
+  assert(!html.includes('FAQPage'));
+  assert(!html.includes('id="preguntas"'));
+  assert(!html.includes('<footer'));
+  assert(html.includes('No es solo<br>una molestia'));
+  assert(html.includes('class="service-thumb"'));
+  assert(html.includes('hero-mobile-640.webp'));
+  assert(html.includes('SOLICITÁ UNA VISITA'));
+  assert(html.includes('class="quote-form"'));
+  assert(!html.includes('name="telefono"'));
+  assert(!html.includes('name="lugar"'));
+  assert(!html.includes('name="mascotas"'));
+  assert(!html.includes('class="faq-section"'));
   for(const match of html.matchAll(/(?:src|href)="(\/(?!\/)[^"#?]*)"/g))assert((await stat('dist'+match[1])).isFile(),match[1]);
   for(const match of html.matchAll(/href="(https:\/\/wa.me\/[^" ]+)"/g)){
     const u=new URL(match[1]);assert.equal(u.pathname,'/'+b.whatsapp);assert(u.searchParams.get('text'));
@@ -33,5 +44,5 @@ try {
   assert.throws(()=>build({SITE_URL:'',VERCEL_PROJECT_PRODUCTION_URL:'',VERCEL_ENV:'production'}));
   build({SITE_URL:'',VERCEL_PROJECT_PRODUCTION_URL:'',VERCEL_ENV:'development'});
   assert((await readFile('dist/index.html','utf8')).includes('noindex, nofollow'));
-  console.log('PASS: metadata, schema, visible FAQs, assets, WhatsApp destinations, sitemap, robots, size budgets and production URL guard.');
+  console.log('PASS: metadata, schema, FAQ removal, assets, WhatsApp destinations, sitemap, robots, size budgets and production URL guard.');
 }finally{build({});}

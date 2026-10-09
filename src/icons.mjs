@@ -12,6 +12,8 @@ const paths = {
   chat: '<path d="M21 11a9 9 0 0 1-9 9 10 10 0 0 1-4-.8L3 21l1.8-5A9 9 0 1 1 21 11Z"/><path d="M8 8h8m-8 4h5"/>',
   calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 11h18m-13 4h1m6 0h1"/>',
   leaf: '<path d="M20 3c0 12-4 17-11 17-8 0-8-10-1-13 4-2 8-2 12-4ZM5 21 16 9"/>',
+  utensils: '<path d="M7 3v8m-3-8v4a3 3 0 0 0 6 0V3m-3 8v10m10-18v18m0-18c-3 3-4 7-4 10h4"/>',
+  paw: '<circle cx="7" cy="8" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="5" cy="13" r="2"/><path d="M8 18c0-2 2-5 4-5s4 3 4 5-2 3-4 3-4-1-4-3Z"/>',
   lock: '<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v2"/>',
   wa: '<path d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L3 20.5l1.4-4.6a8.5 8.5 0 1 1 16.1-4.2Z"/><path d="m8 7 2 3-1 1c1 2 2 3 4 4l1-1 3 2c-1 3-4 2-6 1-3-2-6-7-3-10Z"/>'
 };
