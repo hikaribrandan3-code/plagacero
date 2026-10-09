@@ -11,3 +11,88 @@
 
 .results{padding-bottom:80px}.comparison{display:grid;grid-template-columns:1fr 1fr;gap:20px}.comparison figure{margin:0}.comparison img{width:100%;height:auto;aspect-ratio:1.5;object-fit:cover;border-radius:18px}.comparison figcaption{font-size:13px;font-weight:650;margin-top:14px}.comparison-note{font-size:11px;color:var(--muted);margin-top:20px;max-width:650px}.phone-link,.nav-wa{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 @media(max-width:760px){.results{padding-bottom:55px}.comparison{gap:12px}.comparison img{aspect-ratio:1;object-position:75% center;border-radius:12px}.comparison figcaption{font-size:11px;line-height:1.4}.comparison-note{font-size:10px}}
+
+/* Revision: let the pest scene carry the urgency; keep text readable on the left. */
+.hero-shade{background:linear-gradient(90deg,rgba(2,31,22,.47) 0%,rgba(2,31,22,.29) 35%,rgba(2,31,22,.04) 73%)}
+.hero-inner{min-height:760px;padding-top:150px}
+@media(max-width:760px){.hero-inner{min-height:900px;padding-top:285px}.hero-photo{height:570px;object-position:84% center}.hero-shade{background:linear-gradient(90deg,rgba(2,31,22,.34),rgba(2,31,22,.08) 75%)}}
+@media(max-width:350px){.hero-inner{min-height:900px;padding-top:260px}.hero-photo{height:535px}}
+/* The top navigation returns at the top, then fades away as the visitor scrolls. */
+.navigation{transition:opacity .28s,transform .32s,background .2s,box-shadow .2s}
+.navigation.compact{top:18px;padding-block:15px}
+.navigation.scrolled-away{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,-145%)}
+.mobile-contact{display:flex;position:fixed;z-index:12;right:24px;bottom:max(24px,env(safe-area-inset-bottom));width:60px;height:60px;min-height:60px;padding:0;align-items:center;justify-content:center;border-radius:50%;background:#00c868;color:#052c20;box-shadow:0 8px 28px #001b2342;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s,transform .25s,visibility .25s}
+.mobile-contact.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.mobile-contact>.icon{width:30px;height:30px}
+.contact-tip{position:absolute;right:70px;white-space:nowrap;padding:9px 12px;background:var(--forest);color:white;border-radius:8px;font-size:12px;font-weight:650;opacity:0;pointer-events:none;transition:opacity .2s}
+.mobile-contact:hover .contact-tip,.mobile-contact:focus-visible .contact-tip{opacity:1}
+.mobile-contact.hidden{visibility:hidden!important;opacity:0!important}
+/* Give the service list a clear visual cue without making each row another card. */
+.service{gap:16px}
+.service-thumb{width:70px;height:70px;object-fit:cover;flex-shrink:0;border-radius:12px;background:#eeede3;mix-blend-mode:multiply}
+.service-number{width:22px;flex-shrink:0}
+/* A simple, easy-to-follow vertical sequence for the four steps. */
+.process-section .section{display:grid;grid-template-columns:.8fr 1.2fr;column-gap:90px;align-items:start}
+.process-section .eyebrow{grid-column:1;grid-row:1;margin:0 0 13px}
+.process-section h2{grid-column:1;grid-row:2;max-width:300px}
+.steps{grid-column:2;grid-row:1 / span 2;display:block;margin:0;padding:0;max-width:650px}
+.steps li{display:grid;grid-template-columns:42px 1fr;column-gap:16px;align-items:center;padding:15px 0;border-bottom:1px solid #cbd7c8}
+.steps li:first-child{padding-top:0}
+.steps li:last-child{border-bottom:0;padding-bottom:0}
+.step-top{grid-column:1;grid-row:1 / span 2;margin:0;align-self:start}
+.step-top>span{width:38px;height:38px;border-radius:50%;background:var(--forest);color:#b5e6b8}
+.step-top .icon{width:20px;height:20px}
+.step-top b{display:none}
+.steps h3{grid-column:2;grid-row:1;font-size:17px;margin:0 0 2px}
+.steps p{grid-column:2;grid-row:2;font-size:13px;line-height:1.5}
+/* The family and pet photograph replaces the flat color panel. */
+.problem{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch;padding:0;overflow:hidden;background:#e9eee4;color:var(--ink)}
+.problem-image{position:relative;min-height:390px;overflow:hidden;background:#85745b}
+.problem-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.problem-image-shade{position:absolute;inset:0;background:linear-gradient(0deg,#08271cb8 0%,transparent 50%)}
+.problem-image>p{position:absolute;left:30px;right:30px;bottom:25px;color:white;font-size:10px;font-weight:750;letter-spacing:1.6px}
+.problem-content{padding:46px 40px;align-self:center}
+.problem-content .eyebrow{margin:0 0 15px}
+.problem-content h2{font-size:clamp(30px,3vw,43px);letter-spacing:-1.2px;margin-bottom:22px}
+.problem-content h2 span{color:var(--green)}
+.problem-content>p:not(.eyebrow){font-size:14px;color:#40564a;margin:0 0 13px}
+.problem-signals{display:flex;gap:22px;margin-top:22px;font-size:11px;color:#355846;flex-wrap:wrap}
+.problem-signals span{display:flex;align-items:center;gap:8px}
+.problem-signals .icon{color:#13713e}
+.product-display{min-height:320px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#073b2b,#03271c)}
+.product-display>img{width:100%;height:auto;max-height:430px;object-fit:contain}
+.product-display .image-note{bottom:12px;left:14px;font-size:9px}
+.final-section{justify-content:flex-start}
+@media(max-width:760px){
+ .hero-inner{padding-top:285px}
+ .hero-photo{height:590px}
+ .hero-shade{background:linear-gradient(90deg,rgba(2,31,22,.35),rgba(2,31,22,.04) 78%)}
+ .navigation.scrolled-away{transform:translate(-50%,-145%)}
+ .mobile-contact{width:56px;height:56px;min-height:56px;right:16px;bottom:max(20px,env(safe-area-inset-bottom))}
+ .contact-tip{display:none}
+ .problem{grid-template-columns:1fr;gap:0}
+ .problem-image{min-height:310px;aspect-ratio:1.35}
+ .problem-image>p{left:22px;bottom:19px;font-size:9px}
+ .problem-content{padding:28px 24px 30px}
+ .problem-content h2{font-size:32px}
+ .problem-signals{gap:17px;font-size:10px}
+ .service{gap:10px;padding:17px 0}
+ .service-thumb{width:58px;height:58px;border-radius:10px}
+ .service-number{width:18px;font-size:9px}
+ .service h3{font-size:17px}
+ .service p{font-size:12px}
+ .service-arrow{width:30px;height:30px}
+ .process-section .section{display:block}
+ .process-section h2{margin-bottom:26px}
+ .steps{max-width:none}
+ .steps li{grid-template-columns:38px 1fr;column-gap:14px;padding:13px 0}
+ .step-top>span{width:34px;height:34px}
+ .step-top .icon{width:18px;height:18px}
+ .steps h3{font-size:16px}
+ .steps p{font-size:12px}
+ .product-display{min-height:235px}
+ .product-display>img{max-height:280px}
+ .final-section{margin-bottom:45px}
+}
+@media(prefers-reduced-motion:reduce){.navigation,.mobile-contact,.contact-tip{transition:none}}
+@media(max-width:760px){.hero-shade{background:linear-gradient(90deg,rgba(2,31,22,.32),rgba(2,31,22,.04) 78%),linear-gradient(0deg,#052c20 36%,rgba(5,44,32,.94) 40%,rgba(5,44,32,0) 46%)}}

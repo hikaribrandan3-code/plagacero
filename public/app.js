@@ -1,8 +1,20 @@
 const nav = document.querySelector('#navigation');
-const updateNav = () => nav.classList.toggle('compact', window.scrollY > 48);
-window.addEventListener('scroll', updateNav, { passive: true });
-updateNav();
+const floating = document.querySelector('.mobile-contact');
 const form = document.querySelector('#quote-form');
+let ticking = false;
+const updateChrome = () => {
+  const y = window.scrollY;
+  nav.classList.toggle('compact', y > 48 && y < 150);
+  nav.classList.toggle('scrolled-away', y >= 150);
+  const inHero = document.querySelector('.hero').getBoundingClientRect().bottom > 130;
+  const inForm = form.getBoundingClientRect().top < window.innerHeight && form.getBoundingClientRect().bottom > 0;
+  floating.classList.toggle('visible', y >= 200 && !inHero && !inForm);
+  ticking = false;
+};
+window.addEventListener('scroll', () => {
+  if (!ticking) { window.requestAnimationFrame(updateChrome); ticking = true; }
+}, { passive: true });
+updateChrome();
 form.addEventListener('submit', event => {
   event.preventDefault();
   const error = document.querySelector('#form-error');
@@ -32,7 +44,6 @@ form.addEventListener('submit', event => {
     `Descripción: ${data.descripcion.trim()}`
   ].join('\n');
   const url = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(message)}`;
-  // The browser opens a draft only; the visitor chooses whether to send it.
   const link = document.createElement('a');
   link.href = url;
   link.target = '_blank';
@@ -46,12 +57,3 @@ form.addEventListener('submit', event => {
   fallback.textContent = 'Si no se abrió, tocá acá para ir a WhatsApp.';
   status.append(document.createElement('br'), fallback);
 });
-
-// Keep the floating action from obscuring the form or the hero action.
-const floating = document.querySelector(".mobile-contact");
-const observer = new IntersectionObserver(entries => {
-  for (const entry of entries) entry.target.dataset.inView = String(entry.isIntersecting);
-  floating.classList.toggle("hidden", [document.querySelector(".hero"), form].some(el => el.dataset.inView === "true"));
-}, { threshold: 0.08 });
-observer.observe(document.querySelector(".hero"));
-observer.observe(form);
